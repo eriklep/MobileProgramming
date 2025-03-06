@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Tab = createBottomTabNavigator();
 
@@ -9,36 +10,36 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name='Locations' component={Location}/>
-        <Tab.Screen name='Add Location' component={AddLocation}/>
-        <Tab.Screen name='Map' component={Map}/>
+        <Tab.Screen name='Locations' component={Location} />
+        <Tab.Screen name='Add Location' component={AddLocation} />
+        <Tab.Screen name='Map' component={Map} />
       </Tab.Navigator>
     </NavigationContainer>
   );
 }
 
-function Location(){
-  return(
-    <View>
-
-    </View>
-  )
+function Location() {
+  return (
+    <SafeAreaView>
+      
+    </SafeAreaView>
+  );
 }
 
-function AddLocation(){
-  return(
-    <View>
+function AddLocation() {
+  return (
+    <SafeAreaView>
       
-    </View>
-  )
+    </SafeAreaView>
+  );
 }
 
-function Map(){
-  return(
-    <View>
+function Map() {
+  return (
+    <SafeAreaView>
       
-    </View>
-  )
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
