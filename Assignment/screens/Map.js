@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import * as Location from 'expo-location';
 import MapView from 'react-native-maps'
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Button, TextInput } from "react-native-paper";
+
 
 export default function Map() {
 
-    const [loc, setLoc] = useState(); 
-
+    const [loc, setLoc] = useState({lat: 65.0800, lon: 25.4800}); 
+    const [place, setPlace] = useState('');
 
   useEffect(()=>{
     getLocation();
@@ -22,10 +25,20 @@ export default function Map() {
     }
   }, []);
 
-  console.log('*** ' + loc?.lat);
+  async function search(){
+    let coords = await Location.geocodeAsync(place);
+    if(coords[0]){
+      setLoc({lat: coords[0].latitude, lon: coords[0].longitude})
+  }else{
+    Alert.alert('Location not found!')
+  }
+
+  }
 
   return (
     <View style={styles.container}>
+      <TextInput value={place} onChangeText={setPlace}/>
+      <Button onPress={search}>Search</Button>
       <MapView
       style={styles.map}
       region={{
@@ -49,4 +62,4 @@ const styles = StyleSheet.create({
   map:{
     flex: 1
   }
-})
+});
