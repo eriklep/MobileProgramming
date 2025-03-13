@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import * as Location from 'expo-location';
+import MapView from 'react-native-maps'
 
 export default function Map() {
 
@@ -24,8 +25,28 @@ export default function Map() {
   console.log('*** ' + loc?.lat);
 
   return (
-    <View>
-      <Text></Text>
+    <View style={styles.container}>
+      <MapView
+      style={styles.map}
+      region={{
+        latitude: loc?.lat,
+        longitude: loc?.lon,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421
+      }}
+      />
     </View>
   );
 }
+
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff'
+  },
+  map:{
+    flex: 1
+  }
+})
