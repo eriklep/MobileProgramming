@@ -4,11 +4,14 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Location from "./screens/Location";
 import AddLocation from "./screens/AddLocation";
 import Map from "./screens/Map";
+import LocationProvider from "./screens/contexts";
+;
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
+    <LocationProvider>
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen
@@ -28,5 +31,6 @@ export default function App() {
         />
       </Tab.Navigator>
     </NavigationContainer>
+    </LocationProvider>
   );
 }
