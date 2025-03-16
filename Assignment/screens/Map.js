@@ -11,7 +11,7 @@ export default function Map() {
     const [loc, setLoc] = useState({lat: 65.0800, lon: 25.4800}); 
     const [place, setPlace] = useState('');
 
-  useEffect(()=>{
+  useEffect(()=>{ //Haetaan käyttäjän sijaintia sovelluksen käynnistyessä
     getLocation();
     async function getLocation(){
       let {status} = await Location.requestForegroundPermissionsAsync();
@@ -25,6 +25,8 @@ export default function Map() {
     }
   }, []);
 
+
+  // Sijainnin haku ja sen näyttäminen
   async function search(){
     let coords = await Location.geocodeAsync(place);
     if(coords[0]){
@@ -35,9 +37,10 @@ export default function Map() {
 
   }
 
-  return (
-    <View style={styles.container}>
-      <TextInput value={place} onChangeText={setPlace}/>
+  // Syöte sijainnin hakuun
+  return ( 
+    <View style={styles.container}> 
+      <TextInput value={place} onChangeText={setPlace}/> 
       <Button onPress={search}>Search</Button>
       <MapView
       style={styles.map}

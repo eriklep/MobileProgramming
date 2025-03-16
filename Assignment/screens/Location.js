@@ -5,12 +5,14 @@ import { LocationContext } from "./contexts";
 
 export default function Location() {
   const navigation = useNavigation();
-  const { locations } = useContext(LocationContext);  
+  const { locations } = useContext(LocationContext);  //Haetaan tallennetut sijainnit kontekstista
 
   return (
     <View style={styles.container}>
+      {/*Nappi uuden sijainnin lisäämiseksi*/}
       <Button title="Add new location" onPress={() => navigation.navigate("Add Location")} />
       
+      {/*Viesti, jos sijainteja ei ole lisätty */}
       {locations.length === 0 ? ( 
         <Text style={styles.noLocations}>No locations added yet.</Text>
       ) : (
